@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace MettingsApp.Menus.RemindersMenu
 {
+    //Меню добавления напоминания. Задаём время до события
     internal class AddReminderTimeMenu : SubMenu
     {
         private readonly Meeting meeting;
@@ -42,7 +43,7 @@ namespace MettingsApp.Menus.RemindersMenu
             AppData.Reminders.Add(new Reminder(meeting, fromTime));
             Console.WriteLine($"Напоминание о встрече {meeting} добавлено. Будет отображаться с {fromTime:g}. Для продолжения нажмите любую клавишу");
             Console.ReadKey();
-            return new ViewMeetingsMainMenu(new MainMenu());
+            return new MainMenu();
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace MettingsApp.Menus.AddMeetingMenus
 {
+    //Меню добавления даты встречи
     internal class AddMeetingDateMenu : SubMenu
     {
         public override string Title => "Выбор даты встречи";

@@ -10,6 +10,9 @@ namespace MettingsApp
 {
     public static class MeetingsHelper
     {
+        //Вспомогательный класс с методами преобразования и получения данных
+
+        //Получает список встреч
         public static IEnumerable<Meeting> GetMeetings(DateTime? from = null, DateTime? to = null)
         {
             if (from == null && to == null)
@@ -23,6 +26,7 @@ namespace MettingsApp
                 : GetMeetingsFromTo(to.Value, from.Value);
         }
 
+        
         public static IEnumerable<Meeting> GetAllMeetings()
         {
             return AppData.Meetings;
@@ -38,6 +42,7 @@ namespace MettingsApp
             return AppData.Meetings.Where(m => m.GetStartDate() >= fromDate.Date && m.GetStartDate() < toDate.AddDays(1).Date);
         }
 
+        //Добавляет встречи на определённую дату к строковым пунктам меню. Для отображения пользователю
         public static List<string> AddMeetingsOnDateInfoToItems(DateTime date, List<string> Items)
         {
             var meetings = GetMeetingsOnDate(date);
@@ -63,25 +68,30 @@ namespace MettingsApp
             File.WriteAllLines(fileName + ".txt", meetings.Select((m, i) => $"{i + 1}. {m}" + Environment.NewLine));
         }
 
+        //Ищет пересекающиеся встречи по одной дате. Чтобы встреча не начиналась посреди другой
         public static Meeting? GetOverlappingMeeting(DateTime meetingStartDate, string? meetingName = null)
         {
-            return AppData.Meetings.FirstOrDefault(m => (meetingStartDate >= m.GetStartDateTime() && meetingStartDate < m.GetEndDateTime()) && m.GetName() != meetingName);
+            return AppData.Meetings.FirstOrDefault(m => (meetingStartDate >= m.GetStartDateTime() && meetingStartDate < m.GetEndDateTime()) 
+            && m.GetName() != meetingName); //эта проверка срабатывает при редактировании, проверяем уникальности по имени встречи. Возможно, стоит использовать id
         }
 
+        //Ищет пересекающиеся встречи по двум датам (начало и конец)
         public static Meeting? GetOverlappingMeeting(DateTime meetingStartDate, DateTime meetingEndDate, string? meetingName = null)
         {
             return AppData.Meetings.FirstOrDefault(m => meetingStartDate < m.GetEndDateTime() && m.GetStartDateTime() < meetingEndDate && m.GetName() != meetingName);
         }       
 
+        //получаем дату в формате 01.01.70
         public static DateTime ParseMeetingDate(string input)
         {
             if (!DateTime.TryParseExact(input, "dd'.'MM'.'yy", CultureInfo.InvariantCulture, DateTimeStyles.None,
                                             out DateTime date)
-                || date < DateTime.Today)
+                || date < DateTime.Today) //нельзя создавать в прошлом
                 throw new Exception($"Введена неверная дата: \"{input}\"");
             return date;
         }
 
+        //Получаем время в формате "13:30". И проверяем, не занято ли оно уже другой встречей 
         public static DateTime ParseMeetingStartTime(string input, DateTime meetingDate, string? name = null)
         {
             if (!TimeSpan.TryParseExact(input, @"hh\:m", null, out var startTime) || startTime < TimeSpan.Zero)
@@ -97,6 +107,7 @@ namespace MettingsApp
             return startDateTime;
         }
 
+        //Получаем время окончания встречи. Проверяем, не заняты ли обе даты вместе
         public static DateTime ParseMeetingDuration(string input, DateTime startDate, string? meetingName = null)
         {
             if (!TimeSpan.TryParseExact(input, @"h\:m", null, out var duration) || duration <= TimeSpan.Zero)
@@ -115,6 +126,7 @@ namespace MettingsApp
             return endDate;
         }
 
+        //получаем дату в формате 01.01.70
         public static DateTime ParseDateInput(string input)
         {
             if (!DateTime.TryParseExact(input, "dd'.'MM'.'yy", CultureInfo.InvariantCulture, DateTimeStyles.None,

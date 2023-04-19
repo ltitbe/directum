@@ -8,6 +8,8 @@ namespace MettingsApp.Data
 {
     public class Meeting
     {
+        //потенциально стоит добавить уникальный id
+
         private string name;
         private DateTime startDate;
         private DateTime endDate;

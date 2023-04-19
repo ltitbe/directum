@@ -12,13 +12,11 @@ namespace MettingsApp.Menus.AddMeetingMenus
         public override string Title => "Выбор времени начала встречи";
         private readonly DateTime meetingDate;
         private readonly string meetingName;
-        private readonly List<Meeting> otherMeetings;
 
         public AddMeetingTimeMenu(string meetingName, DateTime meetingDate, Menu fromMenu) : base(fromMenu)
         {
             this.meetingName = meetingName;
             this.meetingDate = meetingDate;
-            otherMeetings = MeetingsHelper.GetMeetingsOnDate(meetingDate).ToList();
 
             Items = MeetingsHelper.AddMeetingsOnDateInfoToItems(meetingDate, Items);
 

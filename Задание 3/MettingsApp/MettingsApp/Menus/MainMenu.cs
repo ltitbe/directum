@@ -13,6 +13,7 @@ namespace MettingsApp.Menus
     {
         public override string Title  => "Главное меню"; 
        
+
         public MainMenu() : base()
         {
             UpdateItems();
@@ -49,10 +50,11 @@ namespace MettingsApp.Menus
 
         public void UpdateItems()
         {
+            //Метод добавляет напоминания к пунктам меню
             ShowReminders();
             Items.AddRange(new[]
             {
-                "1. Добавить новую встречу",
+                "\n1. Добавить новую встречу",
                 "2. Просмотреть встречи",
                 "\n0. Выход"
             });

@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace MettingsApp.Menus
 {
+    //класс работает с разными меню программы
     public static class MenuHandler
     {
         private static string baseTitle => $"Программа для управления личными встречами\nТекущее время: {DateTime.Now:f}";
 
+        //точка входа в программу
         public static void Start()
         {
             Show(new MainMenu());
@@ -21,6 +23,8 @@ namespace MettingsApp.Menus
             while (true) 
             {
                 Console.WriteLine($"{baseTitle}\n\n{menu.Title}\n");
+
+                //отображение пунктов меню
                 foreach(var item in menu.Items)
                     Console.WriteLine(item);
 
