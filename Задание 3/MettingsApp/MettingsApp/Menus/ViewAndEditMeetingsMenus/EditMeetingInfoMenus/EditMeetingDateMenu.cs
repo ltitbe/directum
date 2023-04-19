@@ -19,7 +19,7 @@ namespace MettingsApp.Menus.ViewMeetingsMenus.EditMeetingInfoMenus
 
             Items.AddRange(new[]
            {
-                $"Введите новую дату встречи {meeting}",
+                $"Введите новую дату встречи {meeting} (напр. {DateTime.Now.Date:dd.MM.yy})",
                 "\n0. Назад"
             });
         }
