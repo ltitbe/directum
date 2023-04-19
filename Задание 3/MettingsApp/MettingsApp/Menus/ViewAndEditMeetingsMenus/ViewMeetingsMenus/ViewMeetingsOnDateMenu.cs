@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
-namespace MettingsApp.Menus.ViewAndEditMeetingsMenus.ViewMeetingsMenus
+﻿namespace MettingsApp.Menus.ViewAndEditMeetingsMenus.ViewMeetingsMenus
 {
     internal class ViewMeetingsOnDateMenu : SubMenu
     {

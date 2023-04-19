@@ -1,10 +1,4 @@
-﻿using MettingsApp.Data;
-using MettingsApp.Menus.AddMeetingMenus;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MettingsApp.Menus.AddMeetingMenus;
 
 namespace MettingsApp.Menus
 {

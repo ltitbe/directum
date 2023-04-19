@@ -1,14 +1,11 @@
 ﻿using MettingsApp.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MettingsApp.Menus.ViewMeetingsMenus.EditMeetingSelectMenus
 {
     internal class EditSelectMeetingsMenu : SubMenu
     {
+        public override string Title => "Выбор встречи для изменения";
+
         private readonly IEnumerable<Meeting> meetings;
 
         public EditSelectMeetingsMenu(IEnumerable<Meeting> meetings, Menu fromMenu) : base(fromMenu)
@@ -22,15 +19,14 @@ namespace MettingsApp.Menus.ViewMeetingsMenus.EditMeetingSelectMenus
                 "\nВведите номер встречи для изменения",
                 "\n0. Назад"
             });
-        }
-
-        public override string Title => "Выбор встречи для изменения";
+        }        
 
         public override Menu HandleInput(string input)
         {
             if (input == "0")
                 return FromMenu;
 
+            //проверка валидности выбора встречи для изменения
             var meeting = MeetingsHelper.ParseAndValidateMeetingSelectInput(input, meetings);
                         
             return new SelectInfoToEditMenu(meeting, this);

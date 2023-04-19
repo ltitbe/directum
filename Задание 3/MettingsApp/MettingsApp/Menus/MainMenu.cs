@@ -1,11 +1,5 @@
 ﻿using MettingsApp.Data;
 using MettingsApp.Menus.ViewAndEditMeetingsMenus.ViewMeetingsMenus;
-using MettingsApp.Menus.ViewMeetingsMenus;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MettingsApp.Menus
 {
@@ -13,7 +7,6 @@ namespace MettingsApp.Menus
     {
         public override string Title  => "Главное меню"; 
        
-
         public MainMenu() : base()
         {
             UpdateItems();

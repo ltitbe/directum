@@ -1,10 +1,5 @@
 ﻿using MettingsApp.Data;
 using MettingsApp.Menus.ViewMeetingsMenus.EditMeetingInfoMenus;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MettingsApp.Menus.ViewMeetingsMenus.EditMeetingSelectMenus
 {

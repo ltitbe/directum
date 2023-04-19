@@ -1,11 +1,6 @@
 ﻿using MettingsApp.Data;
 using MettingsApp.Menus.RemindersMenu;
 using MettingsApp.Menus.ViewMeetingsMenus.EditMeetingSelectMenus;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MettingsApp.Menus.ViewAndEditMeetingsMenus.ViewMeetingsMenus
 {
@@ -18,7 +13,10 @@ namespace MettingsApp.Menus.ViewAndEditMeetingsMenus.ViewMeetingsMenus
         {
             meetings = MeetingsHelper.GetMeetings(start, end);
 
-            Items = MeetingsHelper.AddMeetingsInfoToItems(meetings, Items);
+            if (meetings.Any())
+                Items = MeetingsHelper.AddMeetingsInfoToItems(meetings, Items);
+            else 
+                Items.Add("Встреч не найдено");
 
             Items.AddRange(new[]
             {
@@ -41,10 +39,12 @@ namespace MettingsApp.Menus.ViewAndEditMeetingsMenus.ViewMeetingsMenus
                     if (!meetings.Any())
                         throw new Exception("Нет встреч для сохранения в файл");
 
+                    //потенциально можно добавить запрос имени итогового файла
                     MeetingsHelper.WriteMeetingsToFile(meetings, "Встречи");
                     Console.WriteLine("Встречи успешно сохранены в файл \"Встречи.txt\"");
                     return this;
                 case '0':
+                    Console.Clear();
                     return FromMenu;
                 default:
                     throw new Exception("Неверный ввод");

@@ -1,11 +1,5 @@
 ﻿using MettingsApp.Data;
-using MettingsApp.Menus.AddMeetingMenus;
 using MettingsApp.Menus.ViewAndEditMeetingsMenus.ViewMeetingsMenus;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MettingsApp.Menus.ViewMeetingsMenus.EditMeetingInfoMenus
 {
@@ -44,8 +38,7 @@ namespace MettingsApp.Menus.ViewMeetingsMenus.EditMeetingInfoMenus
             if (MeetingsHelper.GetOverlappingMeeting(newStartDate, newEndDate, meeting.GetName()) != null)
                 throw new Exception($"Заданный промежуток для встречи {newStartDate:f} – {newEndDate:HH:mm} пересекается с уже существующей встречей");
 
-            //обновить напоминания. Берём старую дату напоминаний и добавляем разницу с новой
-            var diff = oldMeetingDate - newStartDate;
+            //обновить напоминания
             MeetingsHelper.UpdateReminders(oldMeetingDate, newStartDate);
 
             meeting.SetDates(newStartDate, newEndDate);

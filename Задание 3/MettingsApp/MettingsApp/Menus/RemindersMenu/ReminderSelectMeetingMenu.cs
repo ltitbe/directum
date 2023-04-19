@@ -1,5 +1,4 @@
 ﻿using MettingsApp.Data;
-using MettingsApp.Menus.ViewMeetingsMenus.EditMeetingSelectMenus;
 
 namespace MettingsApp.Menus.RemindersMenu
 {

@@ -1,16 +1,10 @@
-﻿using MettingsApp.Data;
-using MettingsApp.Menus.ViewMeetingsMenus;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MettingsApp.Menus.ViewAndEditMeetingsMenus.ViewMeetingsMenus
+﻿namespace MettingsApp.Menus.ViewAndEditMeetingsMenus.ViewMeetingsMenus
 {
     internal class ViewMeetingsMainMenu : SubMenu
     {
-        public ViewMeetingsMainMenu(Menu fromMenu, DateTime? date = null) : base(fromMenu)
+        public override string Title => "Просмотр встреч";
+
+        public ViewMeetingsMainMenu(Menu fromMenu) : base(fromMenu)
         {
             Items.AddRange(new[]
             {
@@ -19,9 +13,7 @@ namespace MettingsApp.Menus.ViewAndEditMeetingsMenus.ViewMeetingsMenus
                 "3. Просмотреть встречи за промежуток между датами",
                 "\n0. Назад"
             });
-        }
-
-        public override string Title => "Просмотр встреч";
+        }        
 
         public override Menu HandleInput(string input)
         {
@@ -34,6 +26,7 @@ namespace MettingsApp.Menus.ViewAndEditMeetingsMenus.ViewMeetingsMenus
                 case '3':
                     return new ViewMeetingsFromToMenu(this);
                 case '0':
+                    Console.Clear();
                     return FromMenu;
                 default:
                     throw new Exception("Введена неверная команда");

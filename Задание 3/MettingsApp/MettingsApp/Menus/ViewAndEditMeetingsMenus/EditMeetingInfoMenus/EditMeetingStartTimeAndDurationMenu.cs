@@ -1,15 +1,12 @@
 ﻿using MettingsApp.Data;
 using MettingsApp.Menus.ViewAndEditMeetingsMenus.ViewMeetingsMenus;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MettingsApp.Menus.ViewMeetingsMenus.EditMeetingInfoMenus
 {
     internal class EditMeetingStartTimeAndDurationMenu : SubMenu
     {
+        public override string Title => "Изменение времени начала и продолжительности встречи";
+
         private readonly Meeting meeting;
 
         public EditMeetingStartTimeAndDurationMenu(Meeting meeting, Menu fromMenu) : base(fromMenu)
@@ -23,8 +20,6 @@ namespace MettingsApp.Menus.ViewMeetingsMenus.EditMeetingInfoMenus
             });
         }
 
-        public override string Title => "Изменение времени начала и продолжительности встречи";
-
         public override Menu HandleInput(string input)
         {
             if (input == "0")
@@ -35,8 +30,10 @@ namespace MettingsApp.Menus.ViewMeetingsMenus.EditMeetingInfoMenus
 
             var oldMeetingDate = meeting.GetStartDateTime();   
 
+            //ожидаем ввод двух значений времени через пробел
             var tokens = input.Split(' ');
 
+            //проверяем валидность введённых значений времени
             var startDate = MeetingsHelper.ParseAndValidateMeetingStartTime(tokens[0], meeting.GetStartDate(), meeting.GetName());
             var endDate = MeetingsHelper.ParseAndValidateMeetingStartTime(tokens[1], meeting.GetStartDate(), meeting.GetName());
 

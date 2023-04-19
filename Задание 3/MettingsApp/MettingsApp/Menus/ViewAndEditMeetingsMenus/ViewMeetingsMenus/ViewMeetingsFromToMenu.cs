@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MettingsApp.Menus.ViewMeetingsMenus;
-
-namespace MettingsApp.Menus.ViewAndEditMeetingsMenus.ViewMeetingsMenus
+﻿namespace MettingsApp.Menus.ViewAndEditMeetingsMenus.ViewMeetingsMenus
 {
     internal class ViewMeetingsFromToMenu : SubMenu
     {
@@ -23,8 +16,11 @@ namespace MettingsApp.Menus.ViewAndEditMeetingsMenus.ViewMeetingsMenus
         public override Menu HandleInput(string input)
         {
             var tokens = input.Trim().Split(' ');
+
+            //валидируем, что введены две корректные даты через пробел
             var from = MeetingsHelper.ParseDateInput(tokens[0]);
             var to = MeetingsHelper.ParseDateInput(tokens[1]);
+
             return new ViewAndEditMeetingsGenericMenu(this, from, to);
         }
     }

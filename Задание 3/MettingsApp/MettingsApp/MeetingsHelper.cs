@@ -1,10 +1,5 @@
 ﻿using MettingsApp.Data;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MettingsApp
 {
@@ -21,7 +16,7 @@ namespace MettingsApp
             if (to == null)
                 return GetMeetingsOnDate(from.Value);
 
-            return from > to 
+            return from < to 
                 ? GetMeetingsFromTo(from.Value, to.Value) 
                 : GetMeetingsFromTo(to.Value, from.Value);
         }
