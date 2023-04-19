@@ -37,13 +37,15 @@ namespace MettingsApp.Menus
             return this;
         }
 
+        //показать напоминания
         public void ShowReminders()
         {
-            AppData.Reminders.RemoveAll(r => r.GetMeetingDate() < DateTime.Now);
+            //удалить те напоминания, встречи которых уже прошли
+            AppData.Reminders.RemoveAll(r => r.GetMeetingDateTime() < DateTime.Now);
 
             foreach (var r in AppData.Reminders)
             {
-                if (r.GetDate() <= DateTime.Now && r.GetMeetingDate() >= DateTime.Now)
+                if (r.GetDate() <= DateTime.Now && r.GetMeetingDateTime() >= DateTime.Now)
                     Items.Add(r.ToString());
             }
         }

@@ -22,7 +22,7 @@ namespace MettingsApp.Menus
         //Пункты меню и информация
         public virtual List<string> Items { get; set; }
 
-        //Обработка пользовательского ввода
+        //Обработка ввода пользователя
         public abstract Menu HandleInput(string input);
     }
 }

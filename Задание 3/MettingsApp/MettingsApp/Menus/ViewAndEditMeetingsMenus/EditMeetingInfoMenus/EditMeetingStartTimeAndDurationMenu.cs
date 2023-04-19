@@ -33,12 +33,18 @@ namespace MettingsApp.Menus.ViewMeetingsMenus.EditMeetingInfoMenus
                 return FromMenu;
             }
 
+            var oldMeetingDate = meeting.GetStartDateTime();   
+
             var tokens = input.Split(' ');
 
-            var startDate = MeetingsHelper.ParseMeetingStartTime(tokens[0], meeting.GetStartDate(), meeting.GetName());
-            var endDate = MeetingsHelper.ParseMeetingDuration(tokens[1], startDate, meeting.GetName());
+            var startDate = MeetingsHelper.ParseAndValidateMeetingStartTime(tokens[0], meeting.GetStartDate(), meeting.GetName());
+            var endDate = MeetingsHelper.ParseAndValidateMeetingStartTime(tokens[1], meeting.GetStartDate(), meeting.GetName());
 
             meeting.SetDates(startDate, endDate);
+
+            //обновить напоминания            
+            MeetingsHelper.UpdateReminders(oldMeetingDate, startDate);
+
             Console.WriteLine("Время встречи успешно изменено. Для продолжения нажмите любую клавишу");
             Console.ReadKey();
 

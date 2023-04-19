@@ -28,6 +28,9 @@ namespace MettingsApp.Menus.ViewMeetingsMenus.EditMeetingSelectMenus
 
         public override Menu HandleInput(string input)
         {
+            if (input == "0")
+                return FromMenu;
+
             if (!int.TryParse(input, out var result) || result > meetings.Count() || result < 1)
                 throw new Exception("Неверный ввод");
 

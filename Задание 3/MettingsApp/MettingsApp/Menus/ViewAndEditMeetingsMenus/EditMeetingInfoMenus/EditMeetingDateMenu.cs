@@ -34,13 +34,19 @@ namespace MettingsApp.Menus.ViewMeetingsMenus.EditMeetingInfoMenus
                 return FromMenu;
             }
 
-            var date = MeetingsHelper.ParseMeetingDate(input);
+            var oldMeetingDate = meeting.GetStartDateTime();
 
-            var newStartDate = date + meeting.GetStartDateTime().TimeOfDay;
-            var newEndDate = date + meeting.GetEndDateTime().TimeOfDay;
+            var newDate = MeetingsHelper.ParseMeetingDate(input);            
+
+            var newStartDate = newDate + meeting.GetStartDateTime().TimeOfDay;
+            var newEndDate = newDate + meeting.GetEndDateTime().TimeOfDay;
 
             if (MeetingsHelper.GetOverlappingMeeting(newStartDate, newEndDate, meeting.GetName()) != null)
                 throw new Exception($"Заданный промежуток для встречи {newStartDate:f} – {newEndDate:HH:mm} пересекается с уже существующей встречей");
+
+            //обновить напоминания. Берём старую дату напоминаний и добавляем разницу с новой
+            var diff = oldMeetingDate - newStartDate;
+            MeetingsHelper.UpdateReminders(oldMeetingDate, newStartDate);
 
             meeting.SetDates(newStartDate, newEndDate);
             Console.WriteLine("Дата встречи успешно изменена. Для продолжения нажмите любую клавишу");

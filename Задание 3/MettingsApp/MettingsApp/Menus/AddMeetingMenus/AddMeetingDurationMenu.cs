@@ -32,7 +32,7 @@ namespace MettingsApp.Menus.AddMeetingMenus
                 return FromMenu;
             }
 
-            var endDate = MeetingsHelper.ParseMeetingDuration(input, startDate);
+            var endDate = MeetingsHelper.ParseAndValidateMeetingDuration(input, startDate);
             
             AppData.Meetings.Add(new Meeting(meetingName, startDate, endDate));
             Console.WriteLine($"Встреча \"{meetingName}\" {startDate.Date:D} с {startDate:HH:mm} по {endDate:HH:mm} добавлена\nДля продолжения нажмите любую клавишу: ");

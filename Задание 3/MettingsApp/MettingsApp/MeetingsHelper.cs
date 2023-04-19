@@ -92,7 +92,7 @@ namespace MettingsApp
         }
 
         //Получаем время в формате "13:30". И проверяем, не занято ли оно уже другой встречей 
-        public static DateTime ParseMeetingStartTime(string input, DateTime meetingDate, string? name = null)
+        public static DateTime ParseAndValidateMeetingStartTime(string input, DateTime meetingDate, string? name = null)
         {
             if (!TimeSpan.TryParseExact(input, @"hh\:m", null, out var startTime) || startTime < TimeSpan.Zero)
                 throw new Exception($"Неверный формат ввода. Введена строка: \"{input}\". Попробуйте ещё раз");
@@ -108,7 +108,7 @@ namespace MettingsApp
         }
 
         //Получаем время окончания встречи. Проверяем, не заняты ли обе даты вместе
-        public static DateTime ParseMeetingDuration(string input, DateTime startDate, string? meetingName = null)
+        public static DateTime ParseAndValidateMeetingDuration(string input, DateTime startDate, string? meetingName = null)
         {
             if (!TimeSpan.TryParseExact(input, @"h\:m", null, out var duration) || duration <= TimeSpan.Zero)
                 throw new Exception($"Неверный формат ввода. Введена строка: \"{input}\"");
@@ -133,6 +133,14 @@ namespace MettingsApp
                                             out DateTime date))
                 throw new Exception($"Введена неверная дата: \"{input}\"");
             return date;
+        }
+
+        public static void UpdateReminders(DateTime oldMeetingDate, DateTime newDate)
+        {
+            var reminders = AppData.Reminders.Where(m => m.GetMeetingDateTime() == oldMeetingDate);
+            var diff = newDate - oldMeetingDate;
+            foreach (var r in reminders)
+               r.SetDate(r.GetDate() + diff);
         }
     }
 }

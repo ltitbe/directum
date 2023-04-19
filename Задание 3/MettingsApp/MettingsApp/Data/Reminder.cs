@@ -9,7 +9,7 @@ namespace MettingsApp.Data
     public class Reminder
     {
         private readonly Meeting meeting;
-        private readonly DateTime date;
+        private DateTime date;
 
         public Reminder(Meeting meeting, DateTime date)
         {
@@ -27,9 +27,14 @@ namespace MettingsApp.Data
             return this.date;
         }
 
-        public DateTime GetMeetingDate()
+        public DateTime GetMeetingDateTime()
         {
             return this.meeting.GetStartDateTime();
+        }
+
+        public void SetDate(DateTime date)
+        {
+            this.date = date;
         }
     }
 }

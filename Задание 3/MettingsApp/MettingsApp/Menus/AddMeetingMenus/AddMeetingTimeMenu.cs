@@ -31,7 +31,7 @@ namespace MettingsApp.Menus.AddMeetingMenus
                 return FromMenu;
             }
 
-            var startDateTime = MeetingsHelper.ParseMeetingStartTime(input, meetingDate);
+            var startDateTime = MeetingsHelper.ParseAndValidateMeetingStartTime(input, meetingDate);
 
             return new AddMeetingDurationMenu(meetingName, startDateTime, this);
         }

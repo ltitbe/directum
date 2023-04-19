@@ -1,11 +1,12 @@
 ﻿using MettingsApp.Data;
+using MettingsApp.Menus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MettingsApp.Menus
+namespace MettingsApp
 {
     //класс работает с разными меню программы
     public static class MenuHandler
@@ -20,12 +21,15 @@ namespace MettingsApp.Menus
 
         public static void Show(Menu menu)
         {
-            while (true) 
+            //пока не будет выхода из приложения
+            while (true)
             {
+                //потенциально стоит избавиться от привязки к консоли здесь и везде
+                //до этого не написать толковые осмысленные тесты
                 Console.WriteLine($"{baseTitle}\n\n{menu.Title}\n");
 
                 //отображение пунктов меню
-                foreach(var item in menu.Items)
+                foreach (var item in menu.Items)
                     Console.WriteLine(item);
 
                 Console.Write("\nОжидание ввода пользователя: ");

@@ -1,3 +1,3 @@
-﻿using MettingsApp.Menus;
+﻿using MettingsApp;
 
 MenuHandler.Start();
