@@ -24,7 +24,10 @@ namespace MettingsApp.Menus
         public override Menu HandleInput(string input)
         {
             if (input == "0")
+            {
+                Console.Clear();
                 return FromMenu;
+            }               
 
             return new AddMeetingDateMenu(input, this);
         }

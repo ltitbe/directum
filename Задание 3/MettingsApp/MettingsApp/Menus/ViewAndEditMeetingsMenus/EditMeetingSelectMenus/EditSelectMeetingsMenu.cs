@@ -31,11 +31,8 @@ namespace MettingsApp.Menus.ViewMeetingsMenus.EditMeetingSelectMenus
             if (input == "0")
                 return FromMenu;
 
-            if (!int.TryParse(input, out var result) || result > meetings.Count() || result < 1)
-                throw new Exception("Неверный ввод");
-
-            var meeting = AppData.Meetings.First(m => m.GetStartDateTime() == meetings.ToArray()[result - 1].GetStartDateTime());
-
+            var meeting = MeetingsHelper.ParseAndValidateMeetingSelectInput(input, meetings);
+                        
             return new SelectInfoToEditMenu(meeting, this);
         }
     }

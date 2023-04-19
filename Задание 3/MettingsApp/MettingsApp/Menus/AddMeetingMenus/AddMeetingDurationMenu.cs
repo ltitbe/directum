@@ -1,9 +1,4 @@
 ﻿using MettingsApp.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MettingsApp.Menus.AddMeetingMenus
 {
@@ -21,7 +16,9 @@ namespace MettingsApp.Menus.AddMeetingMenus
 
             Items = MeetingsHelper.AddMeetingsOnDateInfoToItems(meetingDate, Items);
 
-            Items.AddRange(new []{ $"Название встречи: {meetingName}. Дата встречи: {meetingDate}\nВведите продолжительность встречи (напр. 01:30)", "0. Назад"});    
+            Items.AddRange(new []{ 
+                $"Название встречи: {meetingName}. Дата встречи: {meetingDate}\nВведите продолжительность встречи (напр. 01:30)", 
+                "\n0. Назад"});    
         }
 
         public override Menu HandleInput(string input)

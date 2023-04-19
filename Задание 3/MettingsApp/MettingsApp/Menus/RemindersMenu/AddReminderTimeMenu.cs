@@ -1,10 +1,4 @@
 ﻿using MettingsApp.Data;
-using MettingsApp.Menus.ViewAndEditMeetingsMenus.ViewMeetingsMenus;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MettingsApp.Menus.RemindersMenu
 {

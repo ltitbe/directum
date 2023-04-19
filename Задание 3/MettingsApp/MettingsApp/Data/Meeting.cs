@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MettingsApp.Data
+﻿namespace MettingsApp.Data
 {
     public class Meeting
     {
-        //потенциально стоит добавить уникальный id
+        //потенциально стоит добавить уникальный id или использовать с этой целью dictionary
 
         private string name;
         private DateTime startDate;
@@ -34,13 +28,11 @@ namespace MettingsApp.Data
         public void SetName(string name)
         {
             this.name = name;
-        }
-
-       
+        }      
 
         public DateTime GetStartDate()
         {
-            return this.startDate.Date;
+            return startDate.Date;
         }
 
         public void SetDates(DateTime startDate, DateTime endDate)

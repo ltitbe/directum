@@ -135,6 +135,16 @@ namespace MettingsApp
             return date;
         }
 
+        public static Meeting ParseAndValidateMeetingSelectInput(string input, IEnumerable<Meeting> meetings)
+        {
+            if (!int.TryParse(input, out var result) || result > meetings.Count() || result < 1)
+                throw new Exception("Неверный ввод");
+
+            var meeting = AppData.Meetings.First(m => m.GetStartDateTime() == meetings.ToArray()[result - 1].GetStartDateTime());
+
+            return meeting;
+        }
+
         public static void UpdateReminders(DateTime oldMeetingDate, DateTime newDate)
         {
             var reminders = AppData.Reminders.Where(m => m.GetMeetingDateTime() == oldMeetingDate);
